@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#111722">
+  <meta name="description" content="Browserbasierter 3-D-First-Person-Insel-Shooter-Prototyp mit Halloween-Season.">
+  <title>Island Shooter — Halloween Prototyp</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"}}</script>
+</head>
+<body>
+  <div id="game-root">
+    <canvas id="game-canvas" aria-label="3-D-Spielwelt"></canvas>
+    <div id="loading-screen" class="screen visible">
+      <div class="panel loading-panel"><div class="sigil">☾</div><h1>ISLAND SHOOTER</h1><p>Halloween-Prototyp wird geladen …</p><div class="load-track"><span id="load-progress"></span></div><small>Leichte 3-D-Grafik · First Person · Insel 3 × 3 km</small></div>
+    </div>
+    <div id="start-screen" class="screen hidden">
+      <div class="panel title-panel"><div class="eyebrow">SOLO · HALLOWEEN SEASON</div><h1>ISLAND<br><span>PROTOCOL</span></h1><p class="subtitle">Eine Insel. Ewige Nacht. Etwas ist in Noxhaven erwacht.</p><div class="menu-facts"><span>🌕 NACHT</span><span>🏝️ 3 × 3 KM</span><span>👁 FIRST PERSON</span></div><button id="start-button" class="primary-button">MISSION STARTEN</button><p class="microcopy">Du startest in einem Militär-Transportflugzeug. Der HUD erscheint erst nach der Landung.</p></div>
+    </div>
+    <div id="jump-screen" class="screen hidden">
+      <div class="panel jump-panel"><div class="eyebrow">MILITÄR-TRANSPORTER · INSELANFLUG</div><h2>ABSprungfreigabe</h2><p>Die Heckrampe ist offen. Springe auf die Insel und öffne den Fallschirm mit <b>Leertaste</b>.</p><button id="jump-button" class="primary-button">AUS DEM FLUGZEUG SPRINGEN</button></div>
+    </div>
+    <div id="phase-hint" class="phase-hint hidden"></div>
+    <div id="hud" class="hidden">
+      <div class="hud-top"><div class="location-chip"><span class="live-dot"></span><span id="location-name">INSEL</span></div><div class="season-chip">☾ HALLOWEEN · NACHT</div><div class="compass-chip" id="compass">N · 000°</div></div>
+      <div id="boss-bar" class="boss-bar hidden"><div class="boss-title">NOXHAVEN · GHOSTFACE</div><div class="boss-track"><span id="boss-health-fill"></span></div><div id="boss-health-label">850 / 850</div></div>
+      <div id="toast" class="toast hidden"></div>
+      <div id="interact-prompt" class="interact-prompt hidden">[E] AUFHEBEN</div>
+      <div class="crosshair" id="crosshair"><span></span><i></i></div>
+      <div id="aim-label" class="aim-label hidden">VISIER</div>
+      <div class="hud-bottom">
+        <div class="vitals"><div class="vital-head"><span>LEBEN</span><b id="health-label">100</b></div><div class="vital-track"><span id="health-fill"></span></div><div class="vital-head shield-head"><span>SCHILD</span><b id="shield-label">0</b></div><div class="vital-track shield-track"><span id="shield-fill"></span></div></div>
+        <div class="weapon-info"><div id="weapon-rarity" class="rarity-label">KEINE WAFFE</div><div id="weapon-name" class="weapon-name">Fäuste</div><div class="ammo-row"><b id="ammo-current">—</b><span>/</span><span id="ammo-reserve">—</span><span class="reload-word" id="reload-word"></span></div><div class="weapon-controls">LMB FEUER · RMB ZIEL/FUNKTION · R NACHLADEN</div></div>
+        <div class="inventory" id="inventory"></div>
+      </div>
+      <div class="bottom-note">WASD BEWEGEN · SHIFT SPRINT · SPACE SPRINGEN · E AUFHEBEN · Q FALLENLASSEN · M KARTE</div>
+    </div>
+    <div id="map-screen" class="screen hidden"><div class="panel map-panel"><div class="map-header"><div><div class="eyebrow">INSEL-KARTE</div><h2>VARNYX ARCHIPEL</h2></div><button id="close-map" class="icon-button">✕</button></div><canvas id="map-canvas" width="620" height="620"></canvas><div id="poi-list" class="poi-list"></div><p class="microcopy">M oder Escape zum Schließen.</p></div></div>
+    <div id="pause-screen" class="screen hidden"><div class="panel"><div class="eyebrow">PAUSE</div><h2>Auf der Insel</h2><button id="resume-button" class="primary-button">WEITERSPIELEN</button><button id="restart-button" class="secondary-button">RUNDE NEU STARTEN</button><p class="microcopy">Mausklick ins Spiel aktiviert First-Person-Steuerung.</p></div></div>
+    <div id="game-over-screen" class="screen hidden"><div class="panel"><div class="eyebrow">MISSION BEENDET</div><h2 id="game-over-title">Du wurdest besiegt</h2><p id="game-over-message">Versuche es erneut.</p><button id="game-over-restart" class="primary-button">ERNEUT STARTEN</button></div></div>
+    <div id="touch-controls" class="hidden"><div class="touch-stick" id="touch-stick"><div class="touch-knob" id="touch-knob"></div></div><div class="touch-buttons"><button id="touch-jump">↑</button><button id="touch-fire">●</button><button id="touch-reload">R</button><button id="touch-pickup">E</button></div></div>
+  </div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

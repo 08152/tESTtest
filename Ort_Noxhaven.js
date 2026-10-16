@@ -1,0 +1,2 @@
+import { buildDistrict } from './WorldTools.js';
+export function createNoxhaven(scene, poi) { return buildDistrict(scene, poi, { count: 24, minWidth: 14, maxWidth: 25, minDepth: 14, maxDepth: 24, minHeight: 12, maxHeight: 39, palette: [0x201e26,0x34333b,0x383d47,0x4b4143], roofColor:0x17161d, road:0x24252b, glow:true, windowColor:0xffa25f, decor:'haunted', vines:true, crates:true, labelColor:'#ffb08b' }); }
